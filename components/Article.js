@@ -88,6 +88,7 @@ const data = [
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
+console.log(data)
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
@@ -102,7 +103,90 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
+  */
 
+
+function articleMaker(title, date, firstparagraph, secondParagraph, thirdParagraph){
+  const article = document.createElement('div')
+  const articTitle = document.createElement('h2')
+  const articP = document.createElement('p')
+  const paragraph1 = document.createElement('p')
+  const paragraph2 = document.createElement('p')
+  const paragraph3 = document.createElement('p')
+  const articSpan = document.createElement('span')
+
+  article.appendChild(articTitle)
+  article.appendChild(articP)
+  article.appendChild(paragraph1)
+  article.appendChild(paragraph2)
+  article.appendChild(paragraph3)
+  article.appendChild(articSpan)
+
+  articTitle.textContent = title;
+  paragraph1.textContent = firstparagraph;
+  paragraph2.textContent = secondParagraph;
+  paragraph3.textContent = thirdParagraph;
+  articP.textContent = date;
+  articSpan.textContent = 'expand' 
+
+  article.classList.add('article')
+  articSpan.classList.add('expandButton')
+  articP.classList.add('date')
+
+   articSpan.addEventListener('click', () =>{
+    article.classList.toggle('article-open');
+  });
+  
+  return article
+}
+
+const articList = document.querySelector('.articles')
+
+data.forEach(articleObj => {
+  articList.appendChild(articleMaker(articleObj.title, articleObj.date, articleObj.firstParagraph,  articleObj.secondParagraph,  articleObj.thirdParagraph))
+})
+// const createArticle = (title, date, paragraphOne, paragraphTwo, paragraphThree) =>{
+
+//   let article = document.createElement('div');
+//   let header = document.createElement('h2');
+//   let dates = document.createElement('p');
+//   let pOne = document.createElement('p');
+//   let pTwo = document.createElement('p');
+//   let pThree = document.createElement('p');
+//   let button = document.createElement('span');
+  
+  
+//   article.appendChild(header);
+//   article.appendChild(dates);
+//   article.appendChild(pOne);
+//   article.appendChild(pTwo);
+//   article.appendChild(pThree);
+//   article.appendChild(button);
+  
+//   header.textContent = title;
+//   dates.textContent = date;
+//   pOne.textContent = paragraphOne;
+//   pTwo.textContent = paragraphTwo;
+//   pThree.textContent = paragraphThree;
+//   button.textContent = "button";
+  
+//   article.classList.add('article');
+//   button.classList.add('expandButton');
+//   dates.classList.add('date');
+  
+//   button.addEventListener('click', () =>{
+//     article.classList.toggle('article-open');
+//   });
+  
+  
+//   return article;
+//   }
+//   const articles = document.querySelector('.articles');
+//   data.forEach(data =>{
+//     articles.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+  
+//   });
+  /*
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 
